@@ -25,12 +25,9 @@ async function sendData(data) {
 const app = express();
 const PORT = process.env.PORT || 4001;
 app.use(express.json());
-app.get("/send-msg", (req, res) => {
+app.post("/send-msg", (req, res) => {
   // data to be sent
-  const data = {
-    title: "Six of Crows",
-    author: "Leigh Burdugo",
-  };
+  const data = req.body;
   sendData(data); // pass the data to the function we defined
   console.log(" messages sent to queue");
   res.send("Message Sent"); //response to the API request
